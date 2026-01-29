@@ -285,6 +285,7 @@ namespace serialmaker {
     ----------------------------- */
 
     //% block="keyboard and mouse control %state"
+    //% color=#E74C3C
     //% group="Tools"
     export function setHid(state: HidState): void {
         sendCommand(state === HidState.Enable ? "START_HID" : "STOP_HID")
@@ -467,12 +468,14 @@ namespace serialmaker {
 
     // Move mouse 10 pixels visually in a direction
     //% block="move mouse %direction by 10 pixels"
+    //% color=#E74C3C
     //% group="Mouse Move from current position"
     export function moveMouseDirection(direction: Direction): void {
         sendCommand("MOUSE_MOVE_" + dirChar(direction))
     }
 
     // Move mouse along an axis by value
+    //% color=#E74C3C
     //% block="move mouse %axis by %value pixels"
     //% value.min=-100 value.max=100
     //% group="Mouse Move from current position"
@@ -481,6 +484,7 @@ namespace serialmaker {
     }
 
     // Move mouse X/Y pixels
+    //% color=#E74C3C
     //% block="move mouse X %x Y %y pixels"
     //% group="Mouse Move from current position"
     export function moveMouseXY(x: number, y: number): void {
@@ -490,6 +494,7 @@ namespace serialmaker {
     /**
      * Move mouse to absolute X and Y position
      */
+    //% color=#E74C3C
     //% block="set mouse position to X %x Y %y"
     //% group="Mouse Position (Screen)"
     export function moveMouseXYAbsolute(x: number, y: number): void {
@@ -497,6 +502,7 @@ namespace serialmaker {
     }
 
     // Set mouse absolute position
+    //% color=#E74C3C
     //% block="set mouse %axis position to %value pixels"
     //% group="Mouse Position (Screen)"
     export function setMousePosition(axis: Axis, value: number): void {
@@ -504,6 +510,7 @@ namespace serialmaker {
     }
 
     // Set mouse percent position
+    //% color=#E74C3C
     //% block="set mouse %axis position to %value percent"
     //% value.min=0 value.max=100
     //% group="Mouse Position (Screen)"
@@ -512,6 +519,7 @@ namespace serialmaker {
     }
 
     // Mouse click/hold
+    //% color=#E74C3C
     //% block="mouse %action %button"
     //% group="Mouse Buttons"
     export function mousePress(action: MousePressAction, button: MouseButton): void {
@@ -520,6 +528,7 @@ namespace serialmaker {
     }
 
     // Mouse release
+    //% color=#E74C3C
     //% block="mouse release %target"
     //% group="Mouse Buttons"
     export function mouseRelease(target: MouseReleaseTarget): void {
@@ -527,6 +536,7 @@ namespace serialmaker {
     }
 
     // Mouse scroll
+    //% color=#E74C3C
     //% block="mouse scroll wheel %direction"
     //% group="Mouse Buttons"
     export function mouseScroll(direction: ScrollDirection): void {
@@ -539,6 +549,7 @@ namespace serialmaker {
     /**
      * Release all keys
      */
+    //% color=#E74C3C
     //% block="release all keyboard keys"
     //% group="Keyboard"
     export function keyReleaseAll(): void {
@@ -546,6 +557,7 @@ namespace serialmaker {
     }
 
     // Single key action
+    //% color=#E74C3C
     //% block="keyboard %action %key"
     //% group="Keyboard"
     export function keyboardKey(action: KeyAction, key: SpecialKey): void {
@@ -557,6 +569,7 @@ namespace serialmaker {
 
 
     // Type arbitrary text
+    //% color=#E74C3C
     //% block="type text %text"
     //% group="Keyboard"
     //% text.defl="Some text goes here"
@@ -584,6 +597,7 @@ namespace serialmaker {
     /**
      * Set text to speech voice
      */
+    //% color=#27AE60
     //% block="set speech voice to %voice"
     //% group="Sound and Speech"
     export function setSpeechVoice(voice: SpeechVoice): void {
@@ -606,6 +620,7 @@ namespace serialmaker {
     /**
      * Speak text using computer voice
      */
+    //% color=#27AE60
     //% block="Text to speech %text"
     //% group="Sound and Speech"
     //% text.defl="Hello World"
@@ -620,6 +635,7 @@ namespace serialmaker {
     /**
      * Standard beep (500Hz, 500ms)
      */
+    //% color=#27AE60
     //% block="beep"
     //% group="Sound and Speech"
     export function beep(): void {
@@ -629,6 +645,7 @@ namespace serialmaker {
     /**
      * Custom beep
      */
+    //% color=#27AE60
     //% block="beep at %frequency Hz for %duration ms"
     //% frequency.min=20 frequency.max=20000 frequency.defl=500
     //% duration.min=1 duration.defl=500
@@ -653,6 +670,7 @@ namespace serialmaker {
     /**
      * Play a sound file (.wav or .mp3)
      */
+    //% color=#27AE60
     //% block="play sound file from /Sounds/%filename"
     //% group="Sound and Speech"
     //% filename.defl="Alert 1.wav"
@@ -663,6 +681,7 @@ namespace serialmaker {
     /**
      * Control sound playback
      */
+    //% color=#27AE60
     //% block="sound file %control"
     //% group="Sound and Speech"
     export function controlSound(control: SoundControl): void {
@@ -682,6 +701,7 @@ namespace serialmaker {
     /**
      * Start continuous sine wave
      */
+    //% color=#27AE60
     //% block="start sine wave at %frequency Hz"
     //% frequency.min=20 frequency.max=20000 frequency.defl=500
     //% group="Sound and Speech"
@@ -692,6 +712,7 @@ namespace serialmaker {
     /**
      * Stop sine wave
      */
+    //% color=#27AE60
     //% block="stop sine wave"
     //% group="Sound and Speech"
     export function stopSineWave(): void {
@@ -757,6 +778,7 @@ namespace serialmaker {
     /**
      * Simple text overlay (defaults used)
      */
+    //% color=#F1C40F
     //% block="Basic overlay text %text"
     //% group="Text Overlay"
     //% text.defl="Put some text here"
@@ -767,6 +789,7 @@ namespace serialmaker {
     /**
      * Advanced text overlay
      */
+    //% color=#F1C40F
     //% block="overlay at X %x Y %y size %size colour %colour text %text"
     //% size.min=1 size.defl=30
     //% group="Text Overlay"
@@ -791,6 +814,7 @@ namespace serialmaker {
     /**
      * Clear text overlay
      */
+    //% color=#F1C40F
     //% block="clear text overlay"
     //% group="Text Overlay"
     export function clearOverlay(): void {
@@ -827,6 +851,7 @@ namespace serialmaker {
     /**
      * Write text to a file (add or clear)
      */
+    //% color=#7F8C8D
     //% block="file write to /Data Logs/%filename mode %mode text %text"
     //% group="Local File Actions"
     //% filename.defl="file.txt"
@@ -846,6 +871,7 @@ namespace serialmaker {
     /**
      * Write text to a specific line in a file stored on your computer
      */
+    //% color=#7F8C8D
     //% block="file write file /Data Logs/%filename at line %line text %text"
     //% line.min=1
     //% group="Local File Actions"
@@ -867,6 +893,7 @@ namespace serialmaker {
     /**
      * Clear a file stored on your computer
      */
+    //% color=#7F8C8D
     //% block="clear file  /Data Logs/%filename"
     //% group="Local File Actions"
     //% filename.defl="file.txt"
@@ -881,6 +908,7 @@ namespace serialmaker {
     /**
      * Request a specific line from a file stored on your computer
      */
+    //% color=#7F8C8D
     //% block="Request data from file /Data Logs/%filename line %line"
     //% line.min=1
     //% group="Local File Actions"
@@ -945,6 +973,7 @@ namespace serialmaker {
     /**
      * Send a value (and optional name) to a specific line in the line graph
      */
+    //% color=#9B59B6
     //% block="line graph set line %line value %value name %name"
     //% name.defl=""
     //% group="Graphs"
@@ -1037,6 +1066,7 @@ namespace serialmaker {
     /**
      * Send a value (and optional name) to a specific column in the column graph
      */
+    //% color=#9B59B6
     //% block="column graph set column %column value %value name %name"
     //% name.defl=""
     //% group="Graphs"
@@ -1060,6 +1090,7 @@ namespace serialmaker {
     /**
      * Control a graph window (Line, Column, or Pie)
      */
+    //% color=#9B59B6
     //% block="%graph %control"
     //% group="Graphs"
     export function graphControl(
@@ -1154,6 +1185,7 @@ namespace serialmaker {
 
 
     //% block="pie graph set segment %segment value %value name %name"
+    //% color=#9B59B6
     //% group="Graphs"
     export function pieGraphSetSegment(
         segment: PieSegment,
@@ -1267,6 +1299,7 @@ namespace serialmaker {
     /**
      * Create or update a GUI button
      */
+    //% color=#E67E22
     //% block="GUI button name %name x %x y %y width %w height %h text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Btn1"
@@ -1288,6 +1321,7 @@ namespace serialmaker {
     /**
      * Create or update a GUI input field
      */
+    //% color=#E67E22
     //% block="GUI input %name x %x y %y font size %size text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Input1"
@@ -1308,6 +1342,7 @@ namespace serialmaker {
     /**
      * Create or update a GUI checkbox
      */
+    //% color=#E67E22
     //% block="GUI checkbox %name x %x y %y font size %size state %state text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Chk1"
@@ -1329,6 +1364,7 @@ namespace serialmaker {
     /**
      * Create or update a GUI slider
      */
+    //% color=#E67E22
     //% block="GUI slider %name x %x y %y width %w height %h min %min max %max value %value font colour %colour"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Slider1"
@@ -1352,6 +1388,7 @@ namespace serialmaker {
     /**
      * Create or update an image
      */
+    //% color=#E67E22
     //% block="GUI image name: %name file %file x %x y %y width %w height %h rotation %rot"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Img1"
@@ -1372,6 +1409,7 @@ namespace serialmaker {
     /**
      * Create or update a rectangle
      */
+    //% color=#E67E22
     //% block="GUI rectangle %name centre x %cx centre y %cy width %w height %h colour %col rotation %rot" degrees
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Rect1"
@@ -1398,6 +1436,7 @@ namespace serialmaker {
     /**
      * Create or update a circle
      */
+    //% color=#E67E22
     //% block="GUI circle %name centre x %cx centre y %cy radius %r colour %col"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Circ1"
@@ -1420,6 +1459,7 @@ namespace serialmaker {
     /**
      * Create or update text
      */
+    //% color=#E67E22
     //% block="GUI text name %name x %x y %y text %text size %size font %font colour %col"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Txt1"
@@ -1447,6 +1487,7 @@ namespace serialmaker {
     /**
     * Create or update a horizontal progress bar
     */
+    //% color=#E67E22
     //% block="GUI horizontal progress name %name x %x y %y width %w height %h progress value %val max %max bar colour %bar font size %fs font colour %fc text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="HProgress1"
@@ -1481,6 +1522,7 @@ namespace serialmaker {
     /**
      * Create or update a vertical progress bar
      */
+    //% color=#E67E22
     //% block="GUI vertical progress name %name x %x y %y width %w height %h progress value %val max %max bar colour %bar font size %fs font colour %fc text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="VProgress1"
@@ -1517,6 +1559,7 @@ namespace serialmaker {
     /**
      * Remove a GUI object by name
      */
+    //% color=#E67E22
     //% block="GUI delete object with name %name"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="btn1"
@@ -1527,6 +1570,7 @@ namespace serialmaker {
     /**
      * Remove all GUI objects
      */
+    //% color=#E67E22
     //% block="GUI delete all objects"
     //% group="Graphical User Interface (GUI)"
     export function guiClearAll(): void {
@@ -1536,6 +1580,7 @@ namespace serialmaker {
     /**
      * Hide the Serial GUI window
      */
+    //% color=#E67E22
     //% block="GUI hide window"
     //% group="Graphical User Interface (GUI)"
     export function guiHide(): void {
@@ -1543,8 +1588,9 @@ namespace serialmaker {
     }
 
     /**
-     * Showthe Serial GUI window
+     * Show the Serial GUI window
      */
+    //% color=#E67E22
     //% block="GUI show window x %x y %y width %w height %h background %bg always on top %top"
     //% group="Graphical User Interface (GUI)"
     //% bg.defl="white"
