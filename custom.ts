@@ -391,24 +391,6 @@ namespace serialmaker {
         sendCommand("CLEAR_LOG")
     }
 
-    /**
-    * Averages a value across selected time frame.
-    */
-    //% group="Tools"
-    // note that Caml casing yields lower case
-    // block text with spaces
-    //% block="Average measurement of $value measured $measurements times over $time_range (ms) "|| icon="\uf080" 
-    export function Averaging(value: number, measurements: number, time_range: number): number {
-        let average = 0
-        let delay = time_range / measurements
-        for (let index = 0; index < measurements; index++) {
-            average += value
-            basic.pause(delay)
-        }
-        average = average / measurements
-        return average;
-    }
-
     /* ------------------------------------------------------------------
     * SYSTEM VARIABLE REQUESTS
     * ------------------------------------------------------------------ */
