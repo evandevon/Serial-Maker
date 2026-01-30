@@ -493,13 +493,14 @@ namespace serialmaker {
 
     // Set mouse percent position (X and Y together)
     //% color=#E74C3C
-    //% block="set mouse position to X %xValue % Y %yValue percent"
+    //% block="set mouse position to X %xValue Y %yValue percent"
     //% xValue.min=0 xValue.max=100 xValue.defl=0
     //% yValue.min=0 yValue.max=100 yValue.defl=0
     //% group="Mouse Position (Screen)"
     export function setMousePositionPercentXY(xValue: number, yValue: number): void {
-        sendCommand(`MOUSE_POS_%XY,${xValue},${yValue}`)
+        sendCommand("MOUSE_POS_%XY," + xValue + "," + yValue)
     }
+
 
 
     // Set mouse percent position
