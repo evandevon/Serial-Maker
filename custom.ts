@@ -848,6 +848,7 @@ namespace serialmaker {
     //% color=#7F8C8D
     //% block="file write to /Data Logs/%filename mode %mode text %text"
     //% group="Local File Actions"
+    //% text.defl="text data"
     //% filename.defl="file.txt"
     export function fileWrite(
         filename: string,
@@ -868,6 +869,7 @@ namespace serialmaker {
     //% color=#7F8C8D
     //% block="file write file /Data Logs/%filename at line %line text %text"
     //% line.min=1 line.defl=1
+    //% text.defl="text data"
     //% group="Local File Actions"
     //% filename.defl="file.txt"
 
