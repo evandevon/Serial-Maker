@@ -867,7 +867,7 @@ namespace serialmaker {
      */
     //% color=#7F8C8D
     //% block="file write file /Data Logs/%filename at line %line text %text"
-    //% line.min=1
+    //% line.min=1 line.defl=1
     //% group="Local File Actions"
     //% filename.defl="file.txt"
 
@@ -904,7 +904,7 @@ namespace serialmaker {
      */
     //% color=#7F8C8D
     //% block="Request data from file /Data Logs/%filename line %line"
-    //% line.min=1
+    //% line.min=1 line.defl=1
     //% group="Local File Actions"
     //% filename.defl="file.txt"
     export function fileRead(filename: string, line: number): void {
