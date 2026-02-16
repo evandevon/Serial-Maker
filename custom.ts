@@ -1017,7 +1017,7 @@ namespace serialmaker {
          * BLOCK 1: Set data for any graph type
          */
         //% color=#9B59B6
-        //% block="set %graphType slot %slot value %value name %name"
+        //% block="set %graphType line %slot value %value name %name"
         //% value.defl=0
         //% name.defl=""
         //% inlineInputMode=inline
