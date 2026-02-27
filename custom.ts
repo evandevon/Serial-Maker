@@ -1212,7 +1212,59 @@ namespace serialmaker {
     }
 
 
+/**
+     * Play or resume an animated GIF at a specific framerate
+     */
+    //% color=#E67E22
+    //% block="GUI play GIF %name at %fps FPS"
+    //% group="Graphical User Interface (GUI)"
+    //% name.defl="loading"
+    //% fps.defl=15
+    //% fps.min=0 fps.max=30
+    export function guiGifPlay(
+        name: string,
+        fps: number
+    ): void {
+        sendCommand(`GUI,PLAY,${name},${fps}`)
+    }
 
+    /**
+     * Pause an animated GIF
+     */
+    //% color=#E67E22
+    //% block="GUI pause GIF %name"
+    //% group="Graphical User Interface (GUI)"
+    //% name.defl="loading"
+    export function guiGifPause(name: string): void {
+        sendCommand(`GUI,PAUSE,${name}`)
+    }
+
+    /**
+     * Create or update an animated GIF
+     */
+    //% color=#E67E22
+    //% block="GUI GIF name %name file %file x %x y %y width %w height %h rotation %rot FPS %fps"
+    //% group="Graphical User Interface (GUI)"
+    //% name.defl="loading"
+    //% file.defl="Loading 1.gif"
+    //% fps.defl=15
+    //% fps.min=0 fps.max=30
+    export function guiGif(
+        name: string,
+        file: string,
+        x: number,
+        y: number,
+        w: number,
+        h: number,
+        rot: number,
+        fps: number
+    ): void {
+        sendCommand(
+            `GUI,GIF,${name},${file},${x},${y},${w},${h},${rot},${fps}`
+        )
+    }
+
+    
     /**
      * Create or update a GUI button
      */
