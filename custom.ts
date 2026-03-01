@@ -655,40 +655,89 @@ namespace serialmaker {
     * SOUND FILE PLAYBACK
     * ------------------------------------------------------------------ */
 
-    export enum SoundControl {
-        //% block="stop"
-        Stop,
+    /* ------------------------------------------------------------------
+    * MULTI-SOUND SYSTEM
+    * ------------------------------------------------------------------ */
+
+    export enum SoundAction {
+        //% block="play"
+        Play,
         //% block="pause"
         Pause,
-        //% block="unpause"
-        Unpause
+        //% block="resume"
+        Resume,
+        //% block="stop"
+        Stop
     }
 
     /**
-     * Play a sound file (.wav or .mp3)
+     * Create or update a sound instance
      */
     //% color=#27AE60
-    //% block="play sound file from /Sounds/%filename"
+    //% block="sound %name load file /Sounds/%filename||volume %volume loop %loop"
     //% group="Sound and Speech"
-    //% filename.defl="Alert 1.wav"
-    export function playSound(filename: string): void {
-        sendCommand("SOUND," + filename)
+    //% name.defl="bg_music"
+    //% filename.defl="ambient.wav"
+    //% volume.min=0 volume.max=100 volume.defl=100
+    //% loop.defl=false
+    //% expandableArgumentMode="toggle"
+    //% inlineInputMode=inline
+    export function soundLoad(
+        name: string,
+        filename: string,
+        volume: number = 100,
+        loop: boolean = false
+    ): void {
+        const loopParam = loop ? ",loop" : ""
+        sendCommand(`SOUND,${name},${filename},${volume}${loopParam}`)
     }
 
     /**
-     * Control sound playback
+     * Control sound playback (play, pause, resume, stop)
      */
     //% color=#27AE60
-    //% block="sound file %control"
+    //% block="sound %name %action"
     //% group="Sound and Speech"
-    export function controlSound(control: SoundControl): void {
-        if (control === SoundControl.Stop) {
-            sendCommand("SOUND,STOP_SOUND")
-        } else if (control === SoundControl.Pause) {
-            sendCommand("SOUND,PAUSE_SOUND")
-        } else {
-            sendCommand("SOUND,UNPAUSE_SOUND")
+    //% name.defl="bg_music"
+    export function soundControl(name: string, action: SoundAction): void {
+        let actionStr = ""
+        switch (action) {
+            case SoundAction.Play:
+                actionStr = "play"
+                break
+            case SoundAction.Pause:
+                actionStr = "pause"
+                break
+            case SoundAction.Resume:
+                actionStr = "resume"
+                break
+            case SoundAction.Stop:
+                actionStr = "stop"
+                break
         }
+        sendCommand(`SOUND,${name},${actionStr}`)
+    }
+
+    /**
+     * Set volume for a specific sound
+     */
+    //% color=#27AE60
+    //% block="sound %name volume %volume \\%"
+    //% group="Sound and Speech"
+    //% name.defl="bg_music"
+    //% volume.min=0 volume.max=100 volume.defl=50
+    export function soundVolume(name: string, volume: number): void {
+        sendCommand(`SOUND,${name},volume,${volume}`)
+    }
+
+    /**
+     * Clear all sounds
+     */
+    //% color=#27AE60
+    //% block="clear all sounds"
+    //% group="Sound and Speech"
+    export function soundClearAll(): void {
+        sendCommand("SOUND,CLEAR_ALL")
     }
 
     /* ------------------------------------------------------------------
