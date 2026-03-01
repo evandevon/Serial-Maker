@@ -375,15 +375,6 @@ namespace serialmaker {
         sendCommand("#" + text)
     }
 
-    /**
-     * Clear the computer log
-     */
-    //% block="clear log"
-    //% group="Tools"
-    export function clearLog(): void {
-        sendCommand("CLEAR_LOG")
-    }
-
     /* ------------------------------------------------------------------
     * SYSTEM VARIABLE REQUESTS
     * ------------------------------------------------------------------ */
