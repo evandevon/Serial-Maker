@@ -279,6 +279,7 @@ namespace serialmaker {
         }
 
 
+    
 
     /* -----------------------------
        TOOLS
@@ -287,6 +288,17 @@ namespace serialmaker {
     let buffer: number[] = []
     let bufferSize = 10         // Default buffer size
     let bufferInitialized = false
+
+    /**
+     * Clear the averaging buffer (removes all stored values)
+     */
+    //% color=#1E90FF
+    //% block="empty the averaging buffer"
+    //% group="Tools"
+    export function clearAveragingBuffer(): void {
+        averagingBuffer = []
+    }
+
 
     /**
      * Set the number of readings to average
@@ -554,6 +566,135 @@ namespace serialmaker {
     export function typeText(text: string): void {
         sendCommand("TEXT," + text)
     }
+
+    /* ------------------------------------------------------------------
+    * XBOX 360 CONTROLLER
+    * ------------------------------------------------------------------ */
+
+    export enum XboxButton {
+        //% block="A"
+        A,
+        //% block="B"
+        B,
+        //% block="X"
+        X,
+        //% block="Y"
+        Y,
+        //% block="LB"
+        LB,
+        //% block="RB"
+        RB,
+        //% block="Start"
+        Start,
+        //% block="Back"
+        Back,
+        //% block="Xbox"
+        Xbox,
+        //% block="Left Stick Click"
+        LS,
+        //% block="Right Stick Click"
+        RS,
+        //% block="D-Pad Up"
+        DpadUp,
+        //% block="D-Pad Down"
+        DpadDown,
+        //% block="D-Pad Left"
+        DpadLeft,
+        //% block="D-Pad Right"
+        DpadRight
+    }
+
+    export enum XboxButtonAction {
+        //% block="press"
+        Press,
+        //% block="release"
+        Release,
+        //% block="tap"
+        Tap
+    }
+
+    export enum XboxStick {
+        //% block="left"
+        Left,
+        //% block="right"
+        Right
+    }
+
+    export enum XboxTrigger {
+        //% block="left"
+        Left,
+        //% block="right"
+        Right
+    }
+
+    /**
+     * Press, release, or tap an Xbox button
+     */
+    //% color=#E74C3C
+    //% block="xbox button %button %action"
+    //% group="Xbox Controller"
+    //% weight=100
+    export function xboxButton(button: XboxButton, action: XboxButtonAction): void {
+        const buttonNames = [
+            "A", "B", "X", "Y", 
+            "LB", "RB", 
+            "START", "BACK", "XBOX",
+            "LS", "RS",
+            "DPAD_UP", "DPAD_DOWN", "DPAD_LEFT", "DPAD_RIGHT"
+        ]
+        const actionNames = ["PRESS", "RELEASE", "TAP"]
+        
+        sendCommand(`XBOX,BUTTON,${buttonNames[button]},${actionNames[action]}`)
+    }
+
+    /**
+     * Move analog stick from -1.0 to +1.0
+     */
+    //% color=#E74C3C
+    //% block="xbox %stick stick x %x y %y"
+    //% group="Xbox Controller"
+    //% weight=90
+    //% x.min=-100 x.max=100 x.defl=0
+    //% y.min=-100 y.max=100 y.defl=0
+    //% inlineInputMode=inline
+    export function xboxStick(stick: XboxStick, x: number, y: number): void {
+        const stickNames = ["LEFT", "RIGHT"]
+        
+        // Convert -100 to 100 range to -1.0 to 1.0
+        const xFloat = Math.max(-1, Math.min(1, x / 100.0))
+        const yFloat = Math.max(-1, Math.min(1, y / 100.0))
+        
+        sendCommand(`XBOX,STICK,${stickNames[stick]},${xFloat},${yFloat}`)
+    }
+
+    /**
+     * Press trigger (analog)
+     */
+    //% color=#E74C3C
+    //% block="xbox %trigger trigger %value \\%"
+    //% group="Xbox Controller"
+    //% weight=80
+    //% value.min=0 value.max=100 value.defl=100
+    export function xboxTrigger(trigger: XboxTrigger, value: number): void {
+        const triggerNames = ["LEFT", "RIGHT"]
+        
+        // Convert 0-100 to 0.0-1.0
+        const valueFloat = Math.max(0, Math.min(1, value / 100.0))
+        
+        sendCommand(`XBOX,TRIGGER,${triggerNames[trigger]},${valueFloat}`)
+    }
+
+    /**
+     * Reset controller to neutral (all buttons released, sticks centered)
+     */
+    //% color=#E74C3C
+    //% block="xbox release and recentre controller"
+    //% group="Xbox Controller"
+    //% weight=70
+    export function xboxReset(): void {
+        sendCommand("XBOX,RESET")
+    }
+
 
 
     /* ------------------------------------------------------------------
