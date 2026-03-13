@@ -1467,6 +1467,26 @@ namespace serialmaker {
         )
     }
 
+    /**
+     * Create a dropdown menu to select files from Data Logs folder
+     */
+    //% color=#E67E22
+    //% block="GUI dropdown %name at x %x y %y width %width height %height"
+    //% group="Graphical User Interface (GUI)"
+    //% weight=44
+    //% name.defl="files"
+    //% width.defl=300
+    //% height.defl=30
+    //% inlineInputMode=inline
+    export function guiDropdown(
+        name: string,
+        x: number,
+        y: number,
+        width: number,
+        height: number
+    ): void {
+        sendCommand("GUI,DROPDOWN," + name + "," + x + "," + y + "," + width + "," + height)
+    }
 
     /**
      * Create or update a GUI input field
