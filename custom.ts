@@ -296,7 +296,7 @@ namespace serialmaker {
     //% block="empty the averaging buffer"
     //% group="Tools"
     export function clearAveragingBuffer(): void {
-        averagingBuffer = []
+        buffer = []
     }
 
 
@@ -1747,6 +1747,7 @@ namespace serialmaker {
     //% bg.defl="white"
     //% w.defl="200"
     //% h.defl="200"
+    //% top.defl=false
     export function guiShow(
         x: number,
         y: number,
