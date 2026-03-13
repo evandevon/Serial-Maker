@@ -1410,14 +1410,23 @@ namespace serialmaker {
     }
 
     /**
-     * Pause an animated GIF
+     * Pause an animated GIF (optionally on a specific frame)
      */
     //% color=#E67E22
-    //% block="GUI pause GIF %name"
+    //% block="GUI pause GIF %name||on frame %frame"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="loading"
-    export function guiGifPause(name: string): void {
-        sendCommand(`GUI,PAUSE,${name}`)
+    //% frame.min=0 frame.defl=0
+    //% expandableArgumentMode="toggle"
+    //% inlineInputMode=inline
+    export function guiGifPause(name: string, frame?: number): void {
+        if (frame !== undefined && frame > 0) {
+            // Pause on specific frame
+            sendCommand("GUI,PAUSE," + name + "," + frame)
+        } else {
+            // Pause on current frame (frame 0 or not specified)
+            sendCommand("GUI,PAUSE," + name)
+        }
     }
 
     /**
